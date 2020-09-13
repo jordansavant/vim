@@ -1,0 +1,144 @@
+:set number
+:set nocompatible
+:set t_Co=256
+:set background=dark
+:syntax on
+
+:set bs=2
+:set so=5 "lines of scroll buffer
+:set cursorline "cursorcolumn
+:filetype indent plugin on
+
+"good colorschemes:
+"herald
+"inkpot
+"jummidarkmod
+"kellys
+"lettuce
+"lucius
+"maroloccio *with help
+"molokai
+"papayawhip *with help
+"print_bw
+"simpleandfriendly
+"soso (white)
+"summerfruit (white) *with help
+"tabula
+"vibrantink *intense
+"wombat256
+"wuye
+colorscheme lettuce
+command! E Explore
+
+" run php linter on current file
+command! PL ! php -l %
+command! -nargs=1 AK ! ack -i <f-args> .
+
+"Highlight trailing whitespace."
+" important this must go before colorscheme changers
+:autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+
+" ENVIRONMENT SPECIFICS
+command! KERNDEV :set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab | colorscheme borland
+command! MAINDEV :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab | colorscheme nightbow
+MAINDEV
+" good colorschemes
+" lettuce, molokai, borland, anotherdark, pyte
+
+" Commands based on File Types being edited
+" autocmd FileType * NOKERNDEV
+" autocmd FileType * colorscheme lettuce
+" autocmd FileType c,cpp KERNDEV
+" autocmd FileType c,cpp colorscheme borland
+
+" pathogen package manager
+execute pathogen#infect()
+
+" syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" ctrl p file search plugin
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|vendor'
+
+" nerdtree helpers
+command! NT NERDTreeTabsToggle
+command! NF NERDTreeFind
+"autocmd vimenter * NERDTree " open on load
+" open nerdtree if no files
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" close vim if only window left open is nerdtree
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" default arrows
+let g:nerdtree_tabs_open_on_console_startup = 2 " open if dir or file is argument // = 2 for dir only
+"let g:nerdtree_tabs_autofind = 1 " open file with nerdtree
+let g:NERDTreeDirArrowExpandable = '→'
+let g:NERDTreeDirArrowCollapsible = '↴'
+
+" statusline
+:set statusline=%f       "tail of the filename
+:set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+:set statusline+=%{&ff}] "file format
+:set statusline+=%h      "help file flag
+:set statusline+=%m      "modified flag
+:set statusline+=%r      "read only flag
+:set statusline+=%y      "filetype
+:set statusline+=%=      "left/right separator
+:set statusline+=%c,     "cursor column
+:set statusline+=%l/%L   "cursor line/total lines
+:set statusline+=\ %P    "percent through file
+
+"Remap autcomplete Ctrl+N to Ctrl+Space
+inoremap <Nul> <C-n>
+
+" VIMdiff Highlighting -- START
+:highlight DiffAdd ctermfg=black ctermbg=blue
+:highlight DiffDelete ctermfg=black ctermbg=black
+:highlight DiffChange ctermfg=black ctermbg=yellow
+":highlight DiffText ctermfg=black ctermbg=yellow
+" VIMdiff Highlighting -- END
+
+" Ctrl Line Shifting -- START
+nnoremap <C-Down> :m .+1<CR>==
+nnoremap <C-Up> :m .-2<CR>==
+inoremap <C-Down> <Esc>:m .+1<CR>==gi
+inoremap <C-Up> <Esc>:m .-2<CR>==gi
+vnoremap <C-Down> :m '>+1<CR>gv=gv
+vnoremap <C-Up> :m '<-2<CR>gv=gv
+" Ctrl Line Shifting -- END
+
+" Macros -- START
+let @f=':Shell grep -in " function[ (]" %'
+let @g='OHvwhy:q:"'
+let @s=':s/\s\+$//'
+" Macros -- END
+
+" TMUX $TERM quirks in VIM -- START
+if $TERM =~ '^screen'
+    map <ESC>OH <Home>
+    map! <ESC>OH <Home>
+    map <ESC>OF <End>
+    map! <ESC>OF <End>
+endif
+" TMUX $TERM quirks in VIM -- END
+
+" LOCAL FOLDER VIMRC EXTENSIONS -- START
+" Load a local .vimrc if found
+:if !empty(glob(".vimext"))
+:   source .vimext
+:endif
+" LOCAL FOLDER VIMRC EXTENSIONS -- END
+

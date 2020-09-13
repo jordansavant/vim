@@ -1,0 +1,104 @@
+:set textwidth=80
+:set paste
+:set et
+:set tabstop=4
+:set sw=4
+:set bs=2
+:set so=5 "lines of scroll buffer
+:highlight ColorColumn ctermbg=0
+:set colorcolumn=80
+:syntax off
+:command W w
+
+"Highlight trailing whitespace."
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" Shell Executor -- START
+function! s:ExecuteInShell(command)
+  let command = join(map(split(a:command), 'expand(v:val)'))
+  let winnr = bufwinnr('^' . command . '$')
+  silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
+  setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
+  "echo 'Execute ' . command . '...'
+  silent! execute 'silent %!'. command
+  silent! execute 'resize ' . line('$')
+  silent! redraw
+  silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
+  silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
+  "echo 'Shell command ' . command . ' executed.'
+endfunction
+command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+" Shell Executor -- END
+
+"Open a new tab with a nerdtree ready to go."
+:command NT NERDTree
+:command NTF NERDTreeFind
+:command NTM NERDTreeMirror
+:command TT tabnew | :NERDTree
+:command TTR tabnew | :NERDTreeMirror
+:command Q q | q
+
+" Transparent background -- START
+function! TransBG()
+    hi Normal ctermbg=NONE
+endfunction
+:command -nargs=0 TransBG :call TransBG()
+" Transparent background -- END
+
+" Initialize Opening -- START
+function! HandleFileOpen()
+    " NERDTree
+    if bufname("%") == ''
+        NERDTree
+        NERDTreeMirror
+    elseif bufname("%") !~ 'COMMIT_EDITMSG' && strpart(bufname("%"), 0, 4) != "grep" && strpart(bufname("%"), 0, 3) != "ack" && filereadable(bufname("%")) && strpart(bufname("%"), 0, 4) != "/tmp" && strpart(bufname("%"), 0, 3) != ".git"
+        NERDTree
+        wincmd l
+        NERDTreeMirror
+        wincmd l
+        NERDTreeFind
+        wincmd l
+    endif
+endfunction
+function! Initialize()
+    HandleFileOpen
+endfunction
+:command -nargs=0 HandleFileOpen :call HandleFileOpen(<args>)
+:command -nargs=0 Initialize :call Initialize(<args>)
+" Initialize Opening -- END
+
+" Event Listeners -- START
+if ! &diff && bufname("%") != '.git/COMMIT_EDITMSG'
+    autocmd VimEnter * Initialize
+    autocmd BufNewFile * HandleFileOpen
+    autocmd BufReadPre * HandleFileOpen
+endif
+" Event Listeners -- END
+
+" Macros -- START
+let @f=':Shell grep -in "^ *[~@\\#][a-zA-Z0-9]" %'
+let @g='OHvwhy:q:"'
+let @s=':s/\s\+$//'
+let @r='@sgv>gvgq'
+" Macros -- END
+
+" Stab - Change Tab Size -- START
+function! Stab(size)
+    let &tabstop=a:size
+    let &sw=a:size
+endfunction
+:command -nargs=1 Stab :call Stab(<args>)
+" Stab - Change Tab Size -- END
+
+" Twix - Change text width -- START
+function! Twix(size)
+    let &textwidth=a:size
+endfunction
+:command -nargs=1 Twix :call Twix(<args>)
+" Twix - Change text width -- END
+
