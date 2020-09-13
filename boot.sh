@@ -40,13 +40,51 @@ link() {
     ln -s "$1" "$2"
 }
 
+addalias() {
+    F="$1"
+    if [ -f "$F" ]; then
+        R=$(grep 'alias vimg' $F 2> /dev/null | wc -l)
+        if [[ "$R" == "0" ]]; then
+            # append it since it is not already there
+            echo "alias vimg='vim -u ~/.vimrc_guest'" >> $F
+        else
+            # replace it if it is
+            sed "s/alias vimg.*/alias vimg='vim -u ~\/.vimrc_guest'/g" -i $F
+        fi
+    else
+        echo "Warning: $F not a file"
+    fi
+}
+
 normal() {
     link "$DIR/.vim" "$HOME/.vim"
     link "$DIR/.vimrc_code" "$HOME/.vimrc"
 }
 
 guest() {
-    echo "guest"
+    # setup .vim folder
+    if [[ -e "$HOME/.vim" ]]; then
+        IGNORE="0"
+        # see if that vim is ours and if so dont warn
+        if [[ -s "$HOME/.vim" ]]; then
+            LD=$(readlink -f "$DIR/.vim")
+            if [[ "$LD" == "$DIR/.vim" ]]; then
+                IGNORE="1"
+            fi
+        fi
+        if [[ "$IGNORE" == "0" ]]; then
+            echo "Warning: $DIR/.vim/ is installed already"
+        fi
+    else
+        link "$DIR/.vim" "$HOME/.vim"
+    fi
+    # setup .vimrc_guest
+    link "$DIR/.vimrc_code" "$HOME/.vimrc_guest"
+    # add alias to .profile, .zshenv or .bash_profile with cmd
+    # try .profile
+    addalias "$HOME/.zshenv"
+    addalias "$HOME/.profile"
+    addalias "$HOME/.bash_profile"
 }
 
 if [[ -z "$MODE" ]] || [[ "$MODE" != "normal" && "$MODE" != "guest" ]]; then
