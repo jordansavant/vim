@@ -67,7 +67,7 @@ guest() {
         IGNORE="0"
         # see if that vim is ours and if so dont warn
         if [[ -s "$HOME/.vim" ]]; then
-            LD=$(readlink -f "$DIR/.vim")
+            LD=$(readlink -f "$HOME/.vim")
             if [[ "$LD" == "$DIR/.vim" ]]; then
                 IGNORE="1"
             fi
