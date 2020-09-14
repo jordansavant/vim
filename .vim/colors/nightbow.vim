@@ -129,7 +129,8 @@ if &t_Co == 256
     exec "hi FoldColumn     cterm=NONE   ctermfg=" . <SID>X(39) . " ctermbg=" . nb_mainbg
 
     "exec "hi Directory      cterm=NONE   ctermfg=" . nb_jetblue . " ctermbg=" . "NONE"
-    exec "hi Directory      cterm=NONE   ctermfg=" . (nb_faintext + 2) . " ctermbg=" . "NONE"
+    exec "hi Directory      cterm=NONE   ctermfg=" . (nb_faintext + 5) . " ctermbg=" . "NONE"
+    "exec "hi Directory      cterm=NONE   ctermfg=" . nb_skyblue . " ctermbg=" . "NONE"
     exec "hi LineNr         cterm=NONE   ctermfg=" . nb_faintext . " ctermbg=" . nb_black
     " hide nontext tildes in empty buffer
     exec "hi NonText cterm=NONE ctermfg=" . nb_mainbg . " ctermbg=" . nb_mainbg
