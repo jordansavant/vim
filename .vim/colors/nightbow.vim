@@ -158,7 +158,7 @@ if &t_Co == 256
     exec "hi Delimiter      cterm=NONE   ctermfg=" . nb_bubblegum . " ctermbg=" . "NONE"
 
     " inverted comment TODO comment
-    exec "hi Todo           cterm=NONE   ctermfg=" . nb_mainbg . " ctermbg=" . nb_faintext
+    exec "hi Todo           cterm=NONE   ctermfg=" . (nb_faintext + 5) . " ctermbg=" . "NONE"
 
     exec "hi Type           cterm=NONE   ctermfg=" . nb_ultravio . " ctermbg=" . "NONE"
     exec "hi cStructure ctermfg=" . nb_ultravio .  " ctermbg=NONE cterm=NONE"
