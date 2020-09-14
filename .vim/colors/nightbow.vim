@@ -77,8 +77,8 @@ if &t_Co == 256
     exec "hi IncSearch      cterm=BOLD   ctermfg=" . nb_mainbg . " ctermbg=" . nb_hazard
     exec "hi Search         cterm=NONE   ctermfg=" . nb_mainbg . " ctermbg=" . <SID>X(52)
 
-    exec "hi ErrorMsg       cterm=BOLD   ctermfg=" . nb_black . " ctermbg=" . <SID>X(48)
-    exec "hi WarningMsg     cterm=BOLD   ctermfg=" . nb_black . " ctermbg=" . <SID>X(68)
+    exec "hi ErrorMsg       cterm=NONE   ctermfg=" . nb_white . " ctermbg=" . <SID>X(48)
+    exec "hi WarningMsg     cterm=NONE   ctermfg=" . nb_white . " ctermbg=" . <SID>X(68)
     exec "hi ModeMsg        cterm=BOLD   ctermfg=" . <SID>X(38) . " ctermbg=" . "NONE"
     exec "hi MoreMsg        cterm=BOLD   ctermfg=" . <SID>X(38) . " ctermbg=" . "NONE"
     exec "hi Question       cterm=BOLD   ctermfg=" . <SID>X(52) . " ctermbg=" . "NONE"
