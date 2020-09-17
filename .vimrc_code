@@ -28,7 +28,7 @@
 "vibrantink *intense
 "wombat256
 "wuye
-colorscheme lettuce
+colorscheme nightbow
 command! E Explore
 
 " run php linter on current file
@@ -53,6 +53,8 @@ MAINDEV
 
 command! P :set paste
 command! NP :set nopaste
+command! L :set list
+command! NL :set nolist
 
 " good colorschemes
 " lettuce, molokai, borland, anotherdark, pyte
