@@ -55,6 +55,7 @@ command! P :set paste
 command! NP :set nopaste
 command! L :set list
 command! NL :set nolist
+command! W :wall
 
 " good colorschemes
 " lettuce, molokai, borland, anotherdark, pyte
