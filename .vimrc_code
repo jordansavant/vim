@@ -47,7 +47,7 @@ autocmd BufWinLeave * call clearmatches()
 
 
 " ENVIRONMENT SPECIFICS
-command! KERNDEV :set tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab | colorscheme borland
+command! KERNDEV :set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab | colorscheme borland
 command! MAINDEV :set tabstop=4 softtabstop=4 shiftwidth=4 expandtab | colorscheme nightbow
 MAINDEV
 
