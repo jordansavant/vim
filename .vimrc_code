@@ -9,6 +9,7 @@
 :set cursorline "cursorcolumn
 :filetype indent plugin on
 :set nomodeline
+:set wrap linebreak nolist " wrap on words, not on characters if possible
 
 "good colorschemes:
 "herald
