@@ -10,6 +10,7 @@
 :filetype indent plugin on
 :set nomodeline
 :set wrap linebreak nolist " wrap on words, not on characters if possible
+:set ttimeoutlen=5 " ms to allow esc sequences to be detected, lowered so we can exit escape mode faster but no 0 so arrow keys can work
 
 "good colorschemes:
 "herald
