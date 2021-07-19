@@ -1,7 +1,6 @@
 :set number
 :set nocompatible
 :set t_Co=256
-:set background=dark
 :syntax on
 
 :set bs=2
@@ -20,7 +19,7 @@
 "lettuce
 "lucius
 "maroloccio *with help
-"molokai
+"nightbow
 "papayawhip *with help
 "print_bw
 "simpleandfriendly
@@ -30,7 +29,6 @@
 "vibrantink *intense
 "wombat256
 "wuye
-colorscheme nightbow
 command! E Explore
 
 " run php linter on current file
@@ -60,7 +58,7 @@ command! NL :set nolist
 command! W :wall
 
 " good colorschemes
-" lettuce, molokai, borland, anotherdark, pyte
+" lettuce, nightbow, borland, anotherdark, pyte
 
 " Commands based on File Types being edited
 " autocmd FileType * NOKERNDEV

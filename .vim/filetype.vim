@@ -4,4 +4,5 @@ augroup filetypedetect
   au! BufNewFile,BufRead *.cfg setf csv
   au! BufNewFile,BufRead *.view setf php
   au! BufNewFile,BufRead *.vue setf html
+  au! BufNewFile,BufRead *.tsx setf typescript
 augroup END

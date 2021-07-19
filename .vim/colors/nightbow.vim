@@ -1,7 +1,7 @@
 " Nightbow is my customization of Inkpot colorscheme modified for 256
 
-set background=dark
 hi clear
+set background=dark
 if exists("syntax_on")
    syntax reset
 endif
