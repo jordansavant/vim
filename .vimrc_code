@@ -129,7 +129,7 @@ vnoremap <C-Up> :m '<-2<CR>gv=gv
 " Ctrl Line Shifting -- END
 
 " Macros -- START
-let @f=':Shell grep -in " function[ (]" %'
+let @f=':! grep -in " function[ (]" %'
 let @g='OHvwhy:q:"'
 let @s=':s/\s\+$//'
 " Macros -- END

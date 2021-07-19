@@ -5,4 +5,5 @@ augroup filetypedetect
   au! BufNewFile,BufRead *.view setf php
   au! BufNewFile,BufRead *.vue setf html
   au! BufNewFile,BufRead *.tsx setf typescript
+  au! BufNewFile,BufRead *.zlang setf zlang
 augroup END
