@@ -154,6 +154,7 @@ endif
 " Usage: :Stab [size]
 function! Stab(size)
     let &tabstop=a:size
-    let &sw=a:size
+    let &shiftwidth=a:size
+    let &softtabstop=a:size
 endfunction
 :command -nargs=1 Stab :call Stab(<args>)
