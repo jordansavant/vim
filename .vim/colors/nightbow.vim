@@ -180,6 +180,7 @@ if &t_Co == 256
         exec "hi MatchParen     cterm=NONE ctermbg=" . nb_darkvio . "ctermfg=" . <SID>X(25)
     endif
 
+    exec "hi SignColumn ctermbg=" . nb_black
 endif
 
 " vim: set et :
