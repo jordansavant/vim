@@ -143,13 +143,6 @@ if $TERM =~ '^screen'
 endif
 " TMUX $TERM quirks in VIM -- END
 
-" LOCAL FOLDER VIMRC EXTENSIONS -- START
-" Load a local .vimrc if found
-:if !empty(glob(".vimext"))
-:   source .vimext
-:endif
-" LOCAL FOLDER VIMRC EXTENSIONS -- END
-
 " Function to change the tab size dynamically."
 " Usage: :Stab [size]
 function! Stab(size)
@@ -158,3 +151,14 @@ function! Stab(size)
     let &softtabstop=a:size
 endfunction
 :command -nargs=1 Stab :call Stab(<args>)
+
+" LOCAL FOLDER VIMRC EXTENSIONS -- START
+" Load a local .vimrc if found
+:if !empty(glob(".vimext"))
+:   source .vimext
+:endif
+" LOCAL FOLDER VIMRC EXTENSIONS -- END
+
+" modification for git-gutter
+set updatetime=100
+
