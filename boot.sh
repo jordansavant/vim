@@ -49,7 +49,7 @@ addalias() {
             echo "alias vimg='vim -u ~/.vimrc_guest'" >> $F
         else
             # replace it if it is
-            sed "s/alias vimg.*/alias vimg='vim -u ~\/.vimrc_guest'/g" -i $F
+            sed "s/alias vimg.*/alias vimu='vim -u ~\/.vimrc_guest'/g" -i $F
         fi
     else
         echo "Warning: $F not a file"
