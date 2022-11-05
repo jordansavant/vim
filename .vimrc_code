@@ -10,6 +10,21 @@
 :set nomodeline
 :set wrap linebreak nolist " wrap on words, not on characters if possible
 :set ttimeoutlen=5 " ms to allow esc sequences to be detected, lowered so we can exit escape mode faster but no 0 so arrow keys can work
+:set tabstop=4 softtabstop=4
+:colorscheme nightbow
+
+" buffers
+:set hidden
+:nnoremap <F5> :buffers<CR>:buffer<Space>
+
+" leaders
+":let mapleader=","
+:noremap <Leader>x :wqall<Enter>
+:noremap <Leader>l :buffers<CR>:buffer<Space>
+:noremap <Leader>w :set wrap<Enter>
+:noremap <Leader>W :set nowrap<Enter>
+:noremap <Leader>p :set paste<Enter>
+:noremap <Leader>P :set nopaste<Enter>
 
 "good colorschemes:
 "herald
@@ -91,7 +106,7 @@ command! NF NERDTreeFind
 " close vim if only window left open is nerdtree
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " default arrows
-let g:nerdtree_tabs_open_on_console_startup = 2 " open if dir or file is argument // = 2 for dir only
+" let g:nerdtree_tabs_open_on_console_startup = 2 " open if dir or file is argument // = 2 for dir only
 "let g:nerdtree_tabs_autofind = 1 " open file with nerdtree
 let g:NERDTreeDirArrowExpandable = '→'
 let g:NERDTreeDirArrowCollapsible = '↴'
