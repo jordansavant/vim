@@ -26,6 +26,8 @@
 :noremap <Leader>p :set paste<Enter>
 :noremap <Leader>P :set nopaste<Enter>
 :noremap <Leader>t :NERDTreeToggle<Enter>
+:noremap <Leader>f v%zf
+:noremap <Leader>F zo
 
 "good colorschemes:
 "herald
