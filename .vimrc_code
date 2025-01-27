@@ -29,6 +29,7 @@
 :noremap <Leader>f v%zf
 :noremap <Leader>F zo
 :noremap <Leader>s :vsplit<Enter>
+:noremap <Leader>n :tabnew<Enter>
 
 "good colorschemes:
 "herald
