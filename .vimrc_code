@@ -28,6 +28,7 @@
 :noremap <Leader>t :NERDTreeToggle<Enter>
 :noremap <Leader>f v%zf
 :noremap <Leader>F zo
+:noremap <Leader>s :vsplit<Enter>
 
 "good colorschemes:
 "herald
@@ -102,6 +103,8 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|vendor'
 " nerdtree helpers
 command! NT NERDTreeTabsToggle
 command! NF NERDTreeFind
+let g:NERDTreeDirArrowExpandable = '→'
+let g:NERDTreeDirArrowCollapsible = '↴'
 "autocmd vimenter * NERDTree " open on load
 " open nerdtree if no files
 "autocmd StdinReadPre * let s:std_in=1
@@ -109,11 +112,10 @@ command! NF NERDTreeFind
 " close vim if only window left open is nerdtree
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " default arrows
-let g:nerdtree_tabs_open_on_console_startup = 1 " open if dir or file is argument // = 2 for dir only
-" let g:nerdtree_tabs_open_on_console_startup = 2 " open if dir or file is argument // = 2 for dir only
 "let g:nerdtree_tabs_autofind = 1 " open file with nerdtree
-let g:NERDTreeDirArrowExpandable = '→'
-let g:NERDTreeDirArrowCollapsible = '↴'
+" UNCOMMENT BELOW TO MAKE NERDTREE ALWAY OPEN
+"let g:nerdtree_tabs_open_on_console_startup = 1 " open if dir or file is argument // = 2 for dir only
+"let g:nerdtree_tabs_open_on_console_startup = 2 " open if dir or file is argument // = 2 for dir only
 
 " statusline
 :set statusline=%f       "tail of the filename

@@ -43,13 +43,13 @@ link() {
 addalias() {
     F="$1"
     if [ -f "$F" ]; then
-        R=$(grep 'alias vimg' $F 2> /dev/null | wc -l)
+        R=$(grep 'alias vimu' $F 2> /dev/null | wc -l)
         if [[ "$R" == "0" ]]; then
             # append it since it is not already there
-            echo "alias vimg='vim -u ~/.vimrc_guest'" >> $F
+            echo "alias vimu='vim -u ~/.vimrc_guest'" >> $F
         else
             # replace it if it is
-            sed "s/alias vimg.*/alias vimu='vim -u ~\/.vimrc_guest'/g" -i $F
+            sed "s/alias vimu.*/alias vimu='vim -u ~\/.vimrc_guest'/g" -i $F
         fi
     else
         echo "Warning: $F not a file"
