@@ -30,6 +30,7 @@
 :noremap <Leader>F zo
 :noremap <Leader>s :vsplit<Enter>
 :noremap <Leader>n :tabnew<Enter>
+:noremap <Leader>g :g/function /<Enter>
 
 "good colorschemes:
 "herald
@@ -195,4 +196,10 @@ endfunction
 
 " syntastic exceptions
 let g:syntastic_mode_map = { 'passive_filetypes': ['c', 'cpp'] }
+
+" bfg script integrations, on write bfg
+" function BfgSetup()
+"     autocmd BufWritePost * !bfg push
+" endfunction
+" :command -nargs=0 BfgSetup :call BfgSetup(<args>)
 
