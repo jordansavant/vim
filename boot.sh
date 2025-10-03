@@ -42,6 +42,11 @@ link() {
 
 addalias() {
     F="$1"
+    
+    if [[ ! -f "$F" ]]; then
+        echo "skipping $F"
+    fi
+        
     if [ -f "$F" ]; then
         R=$(grep 'alias vimu' $F 2> /dev/null | wc -l)
         if [[ "$R" == "0" ]]; then
