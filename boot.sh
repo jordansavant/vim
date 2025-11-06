@@ -42,12 +42,14 @@ link() {
 
 addalias() {
     F="$1"
-    
+
     if [[ ! -f "$F" ]]; then
         echo "skipping $F"
+        return 0
     fi
-        
+
     if [ -f "$F" ]; then
+        echo "adding alias to $F"
         R=$(grep 'alias vimu' $F 2> /dev/null | wc -l)
         if [[ "$R" == "0" ]]; then
             # append it since it is not already there
@@ -78,7 +80,7 @@ guest() {
             fi
         fi
         if [[ "$IGNORE" == "0" ]]; then
-            echo "Warning: $DIR/.vim/ is installed already"
+            echo "Warning: $HOME/.vim/ is installed already"
         fi
     else
         link "$DIR/.vim" "$HOME/.vim"
@@ -101,4 +103,3 @@ fi
 echo "booting vim: $MODE"
 
 $MODE # executes mode function
-
