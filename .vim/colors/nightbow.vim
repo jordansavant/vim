@@ -41,7 +41,7 @@ let g:nbl_colorcursor = 1
 
 let nb_mainbg = 233
 let nb_text = 252
-let nb_faintext = nb_mainbg + 6
+let nb_faintext = nb_mainbg + 12
 let nb_black = 16
 let nb_white = 15
 let nb_deepsea = 17

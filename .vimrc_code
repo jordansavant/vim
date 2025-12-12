@@ -78,6 +78,8 @@ command! L :set list
 command! NL :set nolist
 command! W :wall
 
+let g:netrw_silent=1
+
 " good colorschemes
 " lettuce, nightbow, borland, anotherdark, pyte
 
