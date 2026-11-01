@@ -11,6 +11,9 @@
 :set wrap linebreak nolist " wrap on words, not on characters if possible
 :set ttimeoutlen=5 " ms to allow esc sequences to be detected, lowered so we can exit escape mode faster but no 0 so arrow keys can work
 :set tabstop=4 softtabstop=4
+" disable mouse interactions
+:set mouse=
+
 :colorscheme nightbow
 
 " buffers
@@ -154,9 +157,13 @@ vnoremap <C-Up> :m '<-2<CR>gv=gv
 " Ctrl Line Shifting -- END
 
 " Macros -- START
-let @f=':! grep -in " function[ (]" %'
-let @g='OHvwhy:q:"'
-let @s=':s/\s\+$//'
+let @f=':! grep -in " function[ (]" %
+'
+let @g='OHvwhy:q
+:"
+'
+let @s=':s/\s\+$//
+'
 " Macros -- END
 
 " TMUX $TERM quirks in VIM -- START
